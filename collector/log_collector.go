@@ -10,7 +10,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/satyrius/gonx"
 
-	"github.com/songjiayang/nginx-log-exporter/config"
+	"github.com/AlexeyGrishinActimind/nginx-log-exporter/config"
 )
 
 // Collector is a struct containing pointers to all metrics that should be
@@ -133,8 +133,13 @@ func (c *Collector) formatValue(label, value string) string {
 	}
 
 	for _, target := range replacement.Replaces {
-		if target.Regexp().MatchString(value) {
-			return target.Value
+		regexp := target.Regexp()
+		if regexp.MatchString(value) {
+			if strings.Contains(target.Value, "$") {
+				return regexp.ReplaceAllString(value, target.Value)
+			} else {
+				return target.Value
+			}
 		}
 	}
 

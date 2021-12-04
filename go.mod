@@ -1,4 +1,4 @@
-module github.com/songjiayang/nginx-log-exporter
+module github.com/AlexeyGrishinActimind/nginx-log-exporter
 
 go 1.17
 
