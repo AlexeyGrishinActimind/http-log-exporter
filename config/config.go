@@ -75,6 +75,7 @@ type RelabelConfig struct {
 
 type Replacement struct {
 	Trim     string           `yaml:"trim"`
+	Trims    []string         `yaml:"trims"`
 	Replaces []*ReplaceTarget `yaml:"replace"`
 }
 

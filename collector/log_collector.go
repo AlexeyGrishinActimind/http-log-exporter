@@ -131,6 +131,9 @@ func (c *Collector) formatValue(label, value string) string {
 	if replacement.Trim != "" {
 		value = strings.Split(value, replacement.Trim)[0]
 	}
+	for _, trim := range replacement.Trims {
+		value = strings.Split(value, trim)[0]
+	}
 
 	for _, target := range replacement.Replaces {
 		regexp := target.Regexp()
